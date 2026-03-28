@@ -4,6 +4,8 @@ import json
 from flask import Flask, request, jsonify
 from models import db, Task
 from prometheus_flask_exporter import PrometheusMetrics
+import socket
+
 
 app = Flask(__name__)
 
@@ -99,6 +101,12 @@ def visits():
     count = redis_client.incr('visit_counter')
     return jsonify({'visits': count}), 200
 
+@app.route('/whoami')
+def whoami():
+    return jsonify({
+        'container': socket.gethostname(),
+        'instance': os.getenv('HOSTNAME', 'unknown')
+    }), 200
 
 # ── Démarrage ───────────────────────────────────────────────────
 if __name__ == '__main__':
