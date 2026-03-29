@@ -138,4 +138,5 @@ MIT License
 
 ## 👨‍💻 Author
 
-* Your Name
+Wassim Ouertani
+Firas Chabbouh
